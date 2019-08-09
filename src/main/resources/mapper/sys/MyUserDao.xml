@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myConsole.modules.sys.dao.MyUserDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.myConsole.modules.sys.entity.MyUserEntity" id="myUserMap">
+        <result property="id" column="id"/>
+        <result property="userName" column="user_name"/>
+        <result property="nickName" column="nick_name"/>
+        <result property="telephone" column="telephone"/>
+        <result property="email" column="email"/>
+        <result property="password" column="password"/>
+        <result property="birthday" column="birthday"/>
+        <result property="networkAvatar" column="network_avatar"/>
+        <result property="sex" column="sex"/>
+        <result property="signature" column="signature"/>
+        <result property="introduction" column="introduction"/>
+        <result property="hobby" column="hobby"/>
+        <result property="region" column="region"/>
+        <result property="regionCode" column="region_code"/>
+        <result property="background" column="background"/>
+        <result property="picOne" column="pic_one"/>
+        <result property="picTwo" column="pic_two"/>
+        <result property="picThree" column="pic_three"/>
+        <result property="picFour" column="pic_four"/>
+        <result property="messageBoardPictures" column="message_board_pictures"/>
+        <result property="messageBoards" column="message_boards"/>
+        <result property="state" column="State"/>
+        <result property="struts" column="struts"/>
+        <result property="insTime" column="ins_time"/>
+        <result property="salt" column="salt"/>
+        <result property="type" column="type"/>
+        <result property="subscribe" column="subscribe"/>
+    </resultMap>
+
+
+</mapper>

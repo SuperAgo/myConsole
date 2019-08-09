@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myConsole.modules.sys.dao.MyLeavingMessageDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.myConsole.modules.sys.entity.MyLeavingMessageEntity" id="myLeavingMessageMap">
+        <result property="id" column="id"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="blogId" column="blog_id"/>
+        <result property="name" column="name"/>
+        <result property="email" column="email"/>
+        <result property="message" column="message"/>
+        <result property="insTime" column="ins_time"/>
+        <result property="comments" column="comments"/>
+        <result property="compliments" column="compliments"/>
+    </resultMap>
+
+
+</mapper>

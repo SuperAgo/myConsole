@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>用户博客表</title>
+		<#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+            <a class="btn btn-primary" lay-event="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+            <a class="btn btn-primary" lay-event="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+            <a class="btn btn-primary" lay-event="delete"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+        </div>
+        <table id="myblogTable" lay-filter="myblogTable"></table>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">banner图</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="myBlog.banner" placeholder="banner图"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">文章标题</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="myBlog.title" placeholder="文章标题"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">主标签</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="myBlog.label" placeholder="主标签"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">作者Id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="myBlog.author" placeholder="作者Id"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">内容</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="myBlog.content" placeholder="内容"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">新增时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="myBlog.insTime" placeholder="新增时间"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">评论数量</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="myBlog.comments" placeholder="评论数量"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">点赞数量</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="myBlog.compliments" placeholder="点赞数量"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">阅读量</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="myBlog.reader" placeholder="阅读量"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">是否置顶(0非置顶，1置顶)</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="myBlog.isTop" placeholder="是否置顶(0非置顶，1置顶)"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">置顶时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="myBlog.toppingTime" placeholder="置顶时间"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">是否精选(0非精选，1精选)</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="myBlog.isSelected" placeholder="是否精选(0非精选，1精选)"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">精选时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="myBlog.selectedTime" placeholder="精选时间"/>
+                        </div>
+                    </div>
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" id="btnSaveOrUpdate" data-loading-text="保存中..." @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+        <button class="layui-btn layui-btn-sm" lay-event="delete">删除</button>
+        <button class="layui-btn layui-btn-sm" lay-event="update">编辑</button>
+    </div>
+</script>
+<script src="${request.contextPath}/statics/js/modules/sys/myblog.js?_${.now?long}"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myConsole.modules.sys.dao.MyBlogDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.myConsole.modules.sys.entity.MyBlogEntity" id="myBlogMap">
+        <result property="id" column="id"/>
+        <result property="banner" column="banner"/>
+        <result property="title" column="title"/>
+        <result property="label" column="label"/>
+        <result property="author" column="author"/>
+        <result property="content" column="content"/>
+        <result property="insTime" column="ins_time"/>
+        <result property="comments" column="comments"/>
+        <result property="compliments" column="compliments"/>
+        <result property="reader" column="reader"/>
+        <result property="isTop" column="is_top"/>
+        <result property="toppingTime" column="topping_time"/>
+        <result property="isSelected" column="is_selected"/>
+        <result property="selectedTime" column="selected_time"/>
+        <result property="labelName" column="label_name"/>
+        <result property="nickName" column="nick_name"/>
+    </resultMap>
+
+    <select id="page" resultMap="myBlogMap">
+        SELECT
+            mb.*, ml.label_name,mu.nick_name
+        FROM
+            my_blog mb
+        JOIN my_label ml ON mb.label = ml.id
+        JOIN my_user mu ON mb.author = mu.id
+        where 1=1
+        <if test="params.title != null and params.title != ''">
+            and title LIKE CONCAT('%',#{params.title},'%')
+        </if>
+    </select>
+</mapper>
