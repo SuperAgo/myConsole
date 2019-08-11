@@ -37,7 +37,7 @@ public class SysPageController {
 
 	@RequestMapping("login.html")
 	public String login(){
-		return "11login2";
+		return "login";
 	}
 
 	@RequestMapping("main.html")
