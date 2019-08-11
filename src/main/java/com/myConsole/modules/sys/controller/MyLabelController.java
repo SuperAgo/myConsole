@@ -1,6 +1,7 @@
 package com.myConsole.modules.sys.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import com.myConsole.common.validator.ValidatorUtils;
@@ -72,9 +73,7 @@ public class MyLabelController {
     @RequestMapping("/update")
     @RequiresPermissions("sys:mylabel:update")
     public R update(@RequestBody MyLabelEntity myLabel){
-        ValidatorUtils.validateEntity(myLabel);
         myLabelService.updateById(myLabel);
-        
         return R.ok();
     }
 
@@ -87,6 +86,16 @@ public class MyLabelController {
         myLabelService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
+    }
+
+
+    /**
+     * 删除
+     */
+    @RequestMapping("/getSonLabelList")
+    public R getSonLabelList(){
+        List<Map> labelList = myLabelService.getSonLabelList();
+        return R.ok().put("data",labelList);
     }
 
 }

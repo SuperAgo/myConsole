@@ -25,9 +25,9 @@
 
     <select id="page" resultMap="myBlogMap">
         SELECT
-            mb.*, ml.label_name,mu.nick_name
+        mb.*, ml.label_name,mu.nick_name
         FROM
-            my_blog mb
+        my_blog mb
         JOIN my_label ml ON mb.label = ml.id
         JOIN my_user mu ON mb.author = mu.id
         where 1=1
@@ -35,4 +35,153 @@
             and title LIKE CONCAT('%',#{params.title},'%')
         </if>
     </select>
+
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="myBlogMap">
+        SELECT
+            mb.*, ml.label_name,mu.nick_name
+        FROM
+            my_blog mb
+        JOIN my_label ml ON mb.label = ml.id
+        JOIN my_user mu ON mb.author = mu.id
+        where
+            mb.id=#{id}
+    </select>
+
+    <insert id="insertSelective" parameterType="com.myConsole.modules.sys.entity.MyBlogEntity">
+        insert into my_blog
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="banner != null">
+                banner,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="label != null">
+                label,
+            </if>
+            <if test="author != null">
+                author,
+            </if>
+            <if test="insTime != null">
+                ins_time,
+            </if>
+            <if test="comments != null">
+                comments,
+            </if>
+            <if test="compliments != null">
+                compliments,
+            </if>
+            <if test="reader != null">
+                reader,
+            </if>
+            <if test="isTop != null">
+                is_top,
+            </if>
+            <if test="toppingTime != null">
+                topping_time,
+            </if>
+            <if test="isSelected != null">
+                is_selected,
+            </if>
+            <if test="selectedTime != null">
+                selected_time,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="banner != null">
+                #{banner,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="label != null">
+                #{label,jdbcType=INTEGER},
+            </if>
+            <if test="author != null">
+                #{author,jdbcType=INTEGER},
+            </if>
+            <if test="insTime != null">
+                #{insTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="comments != null">
+                #{comments,jdbcType=INTEGER},
+            </if>
+            <if test="compliments != null">
+                #{compliments,jdbcType=INTEGER},
+            </if>
+            <if test="reader != null">
+                #{reader,jdbcType=INTEGER},
+            </if>
+            <if test="isTop != null">
+                #{isTop,jdbcType=INTEGER},
+            </if>
+            <if test="toppingTime != null">
+                #{toppingTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isSelected != null">
+                #{isSelected,jdbcType=INTEGER},
+            </if>
+            <if test="selectedTime != null">
+                #{selectedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.myConsole.modules.sys.entity.MyBlogEntity">
+        update my_blog
+        <set>
+            <if test="banner != null">
+                banner = #{banner,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="label != null">
+                label = #{label,jdbcType=INTEGER},
+            </if>
+            <if test="author != null">
+                author = #{author,jdbcType=INTEGER},
+            </if>
+            <if test="insTime != null">
+                ins_time = #{insTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="comments != null">
+                comments = #{comments,jdbcType=INTEGER},
+            </if>
+            <if test="compliments != null">
+                compliments = #{compliments,jdbcType=INTEGER},
+            </if>
+            <if test="reader != null">
+                reader = #{reader,jdbcType=INTEGER},
+            </if>
+            <if test="isTop != null">
+                is_top = #{isTop,jdbcType=INTEGER},
+            </if>
+            <if test="toppingTime != null">
+                topping_time = #{toppingTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isSelected != null">
+                is_selected = #{isSelected,jdbcType=INTEGER},
+            </if>
+            <if test="selectedTime != null">
+                selected_time = #{selectedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>

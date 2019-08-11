@@ -16,5 +16,11 @@ import java.util.Map;
 public interface MyBlogService extends IService<MyBlogEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    MyBlogEntity selectById(Integer id);
+
+    Integer updateByPrimaryKeySelective(MyBlogEntity myBlog);
+
+    int insertSelective(MyBlogEntity myBlog);
 }
 

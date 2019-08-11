@@ -34,4 +34,19 @@ public class MyBlogServiceImpl extends ServiceImpl<MyBlogDao, MyBlogEntity> impl
         return new PageUtils(page);
     }
 
+    @Override
+    public MyBlogEntity selectById(Integer id) {
+        return myBlogDao.selectById(id);
+    }
+
+    @Override
+    public Integer updateByPrimaryKeySelective(MyBlogEntity myBlog) {
+        return myBlogDao.updateByPrimaryKeySelective(myBlog);
+    }
+
+    @Override
+    public int insertSelective(MyBlogEntity myBlog) {
+        return myBlogDao.insertSelective(myBlog);
+    }
+
 }

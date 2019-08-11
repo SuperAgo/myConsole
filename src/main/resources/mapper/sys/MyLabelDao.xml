@@ -17,5 +17,16 @@
         <result property="url" column="url"/>
     </resultMap>
 
-
+    <select id="getSonLabelList" resultType="java.util.HashMap">
+        SELECT
+            ml.label_name AS tabName,
+            ml.id AS tabId,
+            ml.url as tabUrl
+        FROM
+            my_label as ml
+        WHERE
+            ml.tab_grade = 2
+        ORDER BY
+            ml.id
+    </select>
 </mapper>

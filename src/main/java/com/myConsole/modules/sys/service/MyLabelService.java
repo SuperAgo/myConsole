@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.myConsole.common.utils.PageUtils;
 import com.myConsole.modules.sys.entity.MyLabelEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,5 +17,7 @@ import java.util.Map;
 public interface MyLabelService extends IService<MyLabelEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    List<Map> getSonLabelList();
 }
 

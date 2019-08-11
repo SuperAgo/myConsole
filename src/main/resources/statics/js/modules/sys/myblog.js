@@ -2,15 +2,14 @@ layui.use('table', function () {
     var table = layui.table;
     table.render({
         elem: '#myblogTable'
-        , height: 'full-75'
-        , toolbar: '#toolbarDemo'
+        , id: 'myblogTable'
+        , height: 'full-60'
         , url: baseURL + 'sys/myblog/list' //数据接口
         , page: true //开启分页
+        , limit: 15
         , cols: [[ //表头
             {field: 'id', checkbox: true}
             , {field: 'title', title: '文章标题', width: 150, align: 'center'}
-            , {field: 'banner', title: 'banner图', width: 150, align: 'center'}
-            , {field: 'content', title: '内容', width: 200, align: 'center'}
             , {field: 'labelName', title: '主标签', width: 100, align: 'center'}
             , {field: 'nickName', title: '作者', width: 120, align: 'center'}
             , {field: 'insTime', title: '新增时间', width: 180, align: 'center'}
@@ -21,10 +20,10 @@ layui.use('table', function () {
                 field: 'isTop', title: '标签', width: 80, align: 'center', templet: function (d) {
                     var status = ''
                     if (d.isTop == 1) {
-                        status += '<i class="fa fa-hand-o-up" title="置顶" aria-hidden="true"></i>  ';
+                        status += '<span class="layui-badge layui-bg-blue"><i class="fa fa-hand-o-up" title="置顶" aria-hidden="true"></i></span>  ';
                     }
                     if (d.isSelected == 1) {
-                        status += '<i class="fa fa-thumbs-o-up" title="精选" aria-hidden="true"></i>';
+                        status += '<span class="layui-badge"><i class="fa fa-thumbs-o-up" title="精选" aria-hidden="true"></i></span>';
                     }
                     return status;
                 }
@@ -41,28 +40,51 @@ layui.use('table', function () {
         }
     });
 
-    table.on('toolbar(myblogTable)', function(obj){
-        var checkStatus = table.checkStatus(obj.config.id);
-        switch(obj.event){
-            case 'add':
-                layer.msg('添加');
-                break;
-            case 'delete':
-                layer.msg('删除');
-                break;
-            case 'update':
-                layer.msg('编辑');
-                break;
-        };
+    var $ = layui.$, active = {
+        reload: function () {
+
+        },
+        add: function () {
+            var checkStatus = table.checkStatus('myblogTable')
+                , data = checkStatus.data;
+            console.log('选中了：' + data.length + ' 个');
+            vm.add();
+        },
+        update: function () {
+            var checkStatus = table.checkStatus('myblogTable')
+                , data = checkStatus.data;
+            if (data.length != 1) {
+                if (data.length > 1) {
+                    layer.msg('每次只能操作一条数据');
+                    return false;
+                } else {
+                    return false;
+                }
+            }
+            vm.title = "编辑";
+            vm.getInfo(data[0].id);
+        }
+    };
+
+    $('.demoTable .layui-btn').on('click', function () {
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
     });
+
+    window.tableReload = function () {
+        table.reload('myblogTable');
+    };
+
 });
 
 var vm = new Vue({
     el: '#rrapp',
     data: {
         showList: true,
+        showMakeDown: true,
         title: null,
-        myBlog: {}
+        myBlog: {},
+        labelList: []
     },
     methods: {
         query: function () {
@@ -72,16 +94,51 @@ var vm = new Vue({
             vm.showList = false;
             vm.title = "新增";
             vm.myBlog = {};
+            vm.openEdit("");
         },
-        update: function (event) {
-            var id = getSelectedRow();
-            if (id == null) {
-                return;
-            }
-            vm.showList = false;
-            vm.title = "修改";
-
-            vm.getInfo(id)
+        lastStep: function () {
+            vm.showList = true;
+            layer.closeAll();
+        },
+        nextStep: function () {
+            vm.showMakeDown = false;
+            layer.closeAll();
+        },
+        returnToEdit: function () {
+            vm.showMakeDown = true;
+            console.log(vm.myBlog.content)
+            vm.openEdit(vm.myBlog.content);
+        },
+        openEdit:function(content){
+            var weight = $("html").width() + "px";
+            var height = $("html").height() + "px";
+            layer.open({
+                title: vm.title,
+                type: 2,
+                area: [weight, height], //宽高
+                content: 'simple.html',
+                success: function (layero, index) {
+                    var body = layer.getChildFrame('body', index);
+                    var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+                    body.find('textarea').val(content);
+                    vm.showList = false;
+                },
+                cancel: function () {
+                    vm.lastStep();
+                }
+            });
+        },
+        getLabelList: function () {
+            $.ajax({
+                type: "POST",
+                url: baseURL + 'sys/mylabel/getSonLabelList',
+                contentType: "application/json",
+                success: function (r) {
+                    if (r.code === 0) {
+                        vm.labelList = r.data;
+                    }
+                }
+            });
         },
         saveOrUpdate: function (event) {
             $('#btnSaveOrUpdate').button('loading').delay(1000).queue(function () {
@@ -136,16 +193,17 @@ var vm = new Vue({
             });
         },
         getInfo: function (id) {
+            if (vm.labelList.length == 0) {
+                vm.getLabelList();
+            }
             $.get(baseURL + "sys/myblog/info/" + id, function (r) {
                 vm.myBlog = r.myBlog;
+                vm.openEdit(r.myBlog.content);
             });
         },
         reload: function (event) {
             vm.showList = true;
-            var page = $("#jqGrid").jqGrid('getGridParam', 'page');
-            $("#jqGrid").jqGrid('setGridParam', {
-                page: page
-            }).trigger("reloadGrid");
+            tableReload();
         }
     }
 });

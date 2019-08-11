@@ -18,7 +18,6 @@ import com.myConsole.common.utils.PageUtils;
 import com.myConsole.common.utils.R;
 
 
-
 /**
  * 用户博客表
  *
@@ -37,7 +36,7 @@ public class MyBlogController {
      */
     @RequestMapping("/list")
     @RequiresPermissions("sys:myblog:list")
-    public R list(@RequestParam Map<String, Object> params){
+    public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = myBlogService.queryPage(params);
 
         return R.ok().put("page", page);
@@ -49,9 +48,8 @@ public class MyBlogController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("sys:myblog:info")
-    public R info(@PathVariable("id") Integer id){
-        MyBlogEntity myBlog = myBlogService.getById(id);
-
+    public R info(@PathVariable("id") Integer id) {
+        MyBlogEntity myBlog = myBlogService.selectById(id);
         return R.ok().put("myBlog", myBlog);
     }
 
@@ -60,9 +58,11 @@ public class MyBlogController {
      */
     @RequestMapping("/save")
     @RequiresPermissions("sys:myblog:save")
-    public R save(@RequestBody MyBlogEntity myBlog){
-        myBlogService.save(myBlog);
-
+    public R save(@RequestBody MyBlogEntity myBlog) {
+        int i = myBlogService.insertSelective(myBlog);
+        if (i < 1) {
+            return R.error();
+        }
         return R.ok();
     }
 
@@ -71,10 +71,11 @@ public class MyBlogController {
      */
     @RequestMapping("/update")
     @RequiresPermissions("sys:myblog:update")
-    public R update(@RequestBody MyBlogEntity myBlog){
-        ValidatorUtils.validateEntity(myBlog);
-        myBlogService.updateById(myBlog);
-        
+    public R update(@RequestBody MyBlogEntity myBlog) {
+        int i = myBlogService.updateByPrimaryKeySelective(myBlog);
+        if (i < 1) {
+            return R.error();
+        }
         return R.ok();
     }
 
@@ -83,7 +84,7 @@ public class MyBlogController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("sys:myblog:delete")
-    public R delete(@RequestBody Integer[] ids){
+    public R delete(@RequestBody Integer[] ids) {
         myBlogService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
