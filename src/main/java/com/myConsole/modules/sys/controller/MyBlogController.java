@@ -54,6 +54,30 @@ public class MyBlogController {
     }
 
     /**
+     * 置顶
+     */
+    @RequestMapping("/setTop/{id}")
+    public R setTop(@PathVariable("id") Integer id) {
+        int i = myBlogService.setTop(id);
+        if (i < 1) {
+            return R.error();
+        }
+        return R.ok();
+    }
+
+    /**
+     * 置顶
+     */
+    @RequestMapping("/setSelected/{id}")
+    public R setSelected(@PathVariable("id") Integer id) {
+        int i = myBlogService.setSelected(id);
+        if (i < 1) {
+            return R.error();
+        }
+        return R.ok();
+    }
+
+    /**
      * 保存
      */
     @RequestMapping("/save")
@@ -74,9 +98,9 @@ public class MyBlogController {
     public R update(@RequestBody MyBlogEntity myBlog) {
         int i = myBlogService.updateByPrimaryKeySelective(myBlog);
         if (i < 1) {
-            return R.error();
+            return R.error("修改失败！");
         }
-        return R.ok();
+        return R.ok("修改成功！");
     }
 
     /**
@@ -85,9 +109,11 @@ public class MyBlogController {
     @RequestMapping("/delete")
     @RequiresPermissions("sys:myblog:delete")
     public R delete(@RequestBody Integer[] ids) {
-        myBlogService.removeByIds(Arrays.asList(ids));
-
-        return R.ok();
+        int i = myBlogService.deleteByIds(Arrays.asList(ids));
+        if (i < 1) {
+            return R.error("删除失败！");
+        }
+        return R.ok("删除成功！");
     }
 
 }

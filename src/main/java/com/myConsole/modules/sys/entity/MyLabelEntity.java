@@ -1,11 +1,13 @@
 package com.myConsole.modules.sys.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 文章分类标签
@@ -60,5 +62,12 @@ public class MyLabelEntity implements Serializable {
 	 * 地址
 	 */
 	private String url;
+	/**
+	 * ztree属性
+	 */
+	@TableField(exist=false)
+	private Boolean open;
 
+	@TableField(exist=false)
+	private List<?> list;
 }

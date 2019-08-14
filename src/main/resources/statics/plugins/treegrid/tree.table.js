@@ -25,6 +25,7 @@
          * 初始化bootstrap table
          */
         init: function () {
+            debugger
             var tableId = this.bstableId;
             this.btInstance =
                 $('#'+tableId).bootstrapTreeTable({

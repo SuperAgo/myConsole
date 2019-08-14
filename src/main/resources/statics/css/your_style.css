@@ -1,0 +1,487 @@
+/*
+ * It is advised not to edit the smartadmin_production.css
+ * as this will override any changes you make in the 
+ * later versions of this theme. 
+ * 
+ * We advise that you use use this CSS to override 
+ * SmartAdmin styles. 
+ * 
+ * Rename the stylesheet to whatever your liking so it will stay
+ * unique to you with each update of SmartAdmin.
+ */
+
+/*
+ * INDEX
+ * 
+ * - HTML
+ * - BODY
+ * - CUSTOM STYLES
+ */
+*{
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+}
+html,body{
+    width:100%;
+    height:100%;
+    font-size: 14px;
+    font-family: 'Microsoft YaHei';
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+}
+.clearfix{
+    zoom:1;
+}
+.clearfix:after{
+    content: "";
+    display:block;
+    clear:both;
+    visibility:hidden;
+    height:0;
+}
+.text-center{
+    text-align: center !important;
+}
+.text-left{
+    text-align: left !important;
+}
+.text-right{
+    text-align: right !important;
+}
+.pull-right{
+    float: right !important;
+}
+.pull-left{
+    float: left !important;
+}
+.ml10{
+    margin-left: 10px !important;
+}
+.ml-14{
+    margin-left: -14px !important;
+}
+.mt7{
+    margin-top: 7px;
+}
+.pl5{
+    padding-left: 5px;
+}
+.col-red{
+    color: red;
+}
+label{
+    line-height: 28px;
+}
+.form-group{
+    margin-bottom: 10px;
+}
+.form-control {
+    width: 100%;
+    height: 28px;
+    padding-left: 5px;
+    border-radius:2px;
+    box-shadow:none;
+    border: 1px solid #e6e6e6;
+}
+.ellipsis {
+    overflow: hidden;
+    word-break: keep-all;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.font-bold{
+    font-weight: bold;
+}
+.cursor-pointer{
+    cursor:pointer !important;
+}
+textarea.form-control{
+    height:56px;
+    padding: 5px;
+}
+/*内容页*/
+.content{
+    width: 100%;
+    height:100%;
+    background: #fff;
+    padding:10px;
+    overflow-y: auto;
+}
+.content .layui-tab-title{
+    height:26px;
+    padding-left: 10px;
+}
+.content .layui-tab-title li{
+    height:26px;
+    font-weight:normal;
+}
+.content .layui-tab-title li:hover{
+    color: #009688 !important;
+}
+.content .layui-tab-title li.layui-this{
+    border-color: #009688;
+    background: #fff !important;
+    border-bottom: 0 !important;
+    color: #009688 !important;
+}
+.reportForm{
+    display: inline-block;
+    width: 100%;
+}
+/*弹框*/
+.modal{
+    width: 100%;
+    padding: 15px;
+    display: inline-block;
+}
+.modal .layui-form-switch{
+    height:23px;
+    margin-top: 2px;
+}
+.modal .layui-tab-title .layui-this{
+    background: #fff;
+}
+.modal .layui-tab-title{
+    padding-left: 15px;
+    height:35px;
+}
+.modal .layui-tab-title li{
+    line-height: 35px;
+}
+.modal .layui-tab-title .layui-this:after{
+    height: 36px;
+}
+.modal .layui-tab{
+    margin: 0;
+}
+.checked input[type=checkbox],.radio input[type=radio]{
+    display: inline-block !important;
+}
+.checked .layui-form-checkbox{
+    display: none !important;
+}
+.layui-elem-field legend{
+    position: relative;
+    font-size: 16px !important;
+}
+.legend-input{
+    text-align: left;
+    position: absolute;
+    width: 205px;
+}
+.layui-laydate-range{
+ width: 386px !important;
+}
+/*搜索样式*/
+.search-width{
+    display: flex;
+    width: 100%;
+}
+.search-width .layui-input {
+    width: 110px;
+    float: left;
+}
+.search-width .layui-input.num-width{
+    width: 150px;
+}
+.search-width .layui-input.name-width{
+    width: 75px;
+}
+.search-width div{
+    float: left;
+}
+.search-width label{
+    margin: 0 3px 0 10px;
+    line-height: 28px;
+    display: inline-block;
+    float: left;
+}
+.search-width .select-css{
+    height:28px;
+    width: auto;
+    line-height: 26px;
+    border:1px solid #e6e6e6;
+    border-radius: 2px;
+}
+/*重写layui*/
+.layui-form-checkbox{
+    height:28px;
+    line-height: 28px;
+}
+.layui-input, .layui-select, .layui-textarea{
+    height: 28px;
+    padding-left: 5px;
+}
+.layui-textarea{
+    min-height: 46px;
+}
+.layui-btn{
+    height: 28px;
+    line-height: 28px;
+    padding: 0 15px;
+}
+.layui-btn-xs {
+    height: 22px;
+    line-height: 22px;
+    padding: 0 10px;
+    font-size: 12px;
+}
+.layui-table, .layui-table-view{
+    margin:0;
+}
+.layui-table-view .layui-form-checkbox[lay-skin=primary] i{
+    margin-top: 6px;
+}
+.layui-form-select dl{
+    max-height: 150px !important;
+}
+.layui-form-radio>i{
+    font-size: 18px !important;
+    margin-top: -6px;
+}
+.layui-laydate-main{
+    width: 192px !important;
+}
+.layui-laydate-content{
+    padding: 5px !important;
+}
+.layui-laydate-header{
+    line-height: 25px !important;
+    padding: 3px 25px !important;
+}
+.layui-laydate-header i{
+    top:3px !important;
+    font-size: 15px !important;
+}
+.layui-laydate-header i.laydate-prev-y{
+    left: 5px !important;
+}
+.layui-laydate-header i.laydate-prev-m{
+    left: 25px !important;
+}
+.layui-laydate-header i.laydate-next-m{
+    right: 25px !important;
+}
+.layui-laydate-header i.laydate-next-y{
+    right: 5px !important;
+}
+.layui-laydate-content td, .layui-laydate-content th{
+    width: 25px !important;
+    height: 21px !important;
+    padding: 2px !important;
+    text-align: center !important;
+    font-size: 13px;
+}
+.laydate-month-list>li{
+    margin: 4px 0 !important;
+}
+.laydate-year-list{
+    overflow: auto !important;
+}
+.layui-laydate-footer {
+    position: relative;
+    height: 36px !important;
+    line-height: 26px !important;
+    padding: 5px 10px !important;
+}
+.laydate-footer-btns{
+    top:6px !important;
+}
+.laydate-footer-btns span {
+    height: 23px !important;
+    line-height: 21px !important;
+    margin: 0 0 0 -2px !important;
+}
+.layui-laydate{
+    z-index: 6666666666 !important;
+}
+.layui-tab{
+    margin: 0 !important;
+}
+
+
+
+.layui-nav .layui-nav-more{
+    border-style: solid;
+    border-color: #ccc transparent transparent !important;
+}
+.admin-header-user:hover .layui-nav-more,.layui-nav-itemed .layui-nav-more{
+    top:23px;
+    border-color: transparent transparent #ccc !important;
+}
+.layui-nav-itemed .layui-nav-more{
+    top:18px;
+}
+.layui-nav .layui-nav-mored, .layui-nav-itemed>a .layui-nav-more{
+    margin-top: -4px;
+}
+.admin-header .layui-nav-child{
+    padding: 5px 15px !important;
+    left: auto;
+    right:0;
+}
+.admin-header:hover .layui-nav-child{
+    display: block;
+}
+.layui-nav-child{
+    top:58px;
+}
+.layui-nav,.layui-bg-black{
+    background: #f6f6f6 !important;
+}
+.layui-layout-admin .layui-side{
+    padding-top: 10px;
+    border-right: solid 1px #d3d3d3;
+}
+.layui-layout-admin .layui-main{
+    margin: 0;
+    padding-left: 15px;
+}
+.layui-nav-tree .layui-nav-item a{
+    font-weight: bold;
+    color: #454545;
+}
+.layui-nav-tree .layui-nav-item a:hover{
+    background-color: #009688;
+    text-decoration: none;
+    color: #fff !important;
+}
+.layui-nav-tree .layui-nav-item a:hover .fa{
+    color: #fff;
+}
+.layui-nav-tree .layui-nav-item a:hover .layui-nav-more{
+    top:17px;
+    border-color: transparent transparent #fff !important;
+}
+.layui-nav-tree .layui-nav-bar{
+    width: 2px;
+    display: none !important;
+    height: 0 !important;
+    background-color: #009688;
+}
+.layui-nav-tree .layui-nav-child a{
+    font-weight: normal !important;
+}
+.layui-nav-itemed>a, .layui-nav-tree .layui-nav-title a{
+    color: #454545 !important;
+}
+.layui-nav .layui-nav-mored, .layui-nav-itemed>a .layui-nav-more{
+    border-color: transparent transparent #ccc;
+}
+.layui-nav-itemed>.layui-nav-child{
+    background-color: #f6f6f6 !important;
+}
+.layui-nav-tree .layui-nav-child dd a{
+    padding-left: 25px;
+    border-left: 2px solid transparent;
+}
+.layui-nav-tree .layui-nav-child dd:hover a,.layui-nav .layui-nav-child dd.layui-this a, .layui-nav-child dd.layui-this a,
+.layui-nav-tree .layui-nav-child dd.layui-this, .layui-nav-tree .layui-nav-child dd.layui-this a,
+.layui-nav-tree .layui-this, .layui-nav-tree .layui-this>a, .layui-nav-tree .layui-this>a:hover{
+    border-left: 2px solid #009688;
+    background: #fff !important;
+    color: #009688 !important;
+}
+.layui-nav-tree .layui-nav-child dd:hover .fa, .layui-nav-child dd.layui-this .fa{
+    color: #009688 !important;
+}
+.layui-layout-admin .layui-body{
+    bottom: 0 !important;
+}
+.layui-tab-content{
+    padding: 0;
+}
+.admin-nav-card>.layui-tab-title{
+    height: 35px;
+    padding: 7px 12px 0;
+    border-bottom: solid 1px #d3d3d3;
+    background: #f6f6f6 !important;
+}
+.layui-tab-title li{
+    font-size: 13px;
+    height:28px;
+    line-height: 26px;
+    min-width: 0;
+    color: #454545 !important;
+    font-weight: bold;
+    margin: 0 1px;
+    background-color: #e8e8e8 !important;
+    border: solid 1px #dadada;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.layui-tab-title .layui-this:after{
+    height:26px;
+    border: none !important;
+}
+.admin-nav-card>.layui-tab-title .layui-this{
+    background-color: #fff !important;
+    border-bottom: 1px solid transparent;
+}
+.layui-tab-title li .layui-tab-close{
+    width: 12px;
+    height: 12px;
+    line-height: 13px;
+    font-size: 12px;
+}
+.layui-tab-title li:first-child .layui-tab-close{
+    display: none;
+}
+.layui-tab-title .iconfont{
+    margin-right: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    color: #b2b2b2;
+}
+.layui-tab-title .layui-this .iconfont:hover{
+    color: #009688 !important;
+}
+#menu .fa{
+    display: none;
+}
+.first-menu{
+    display: inline-block;
+    height: 100%;
+    padding-top: 26px;
+}
+.first-menu li{
+    height:32px;
+    line-height: 32px;
+    padding: 0 30px;
+    margin: 0 2px;
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+    border: solid 1px #dadada;
+    border-bottom: 0;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+.first-menu.layui-tab-title,.first-menu.layui-tab-title .layui-this:after{
+    border: none !important;
+}
+.first-menu .active,.first-menu .active:hover,.first-menu .layui-this,.first-menu .layui-this:hover{
+    background-color: #009688 !important;
+    border-color: #009688 !important;
+    border-bottom: 0 !important;
+    color: #fff !important;
+    box-shadow: 1px 1px 0 #009988 inset !important;
+}
+.first-menu li:hover{
+    color: #009688!important;
+}
+.img-box .icon-delete{
+    position: absolute;
+    left:190px;
+    top: -2px;
+    color: red;
+}
+.thisImg{
+    width: 200px;
+    height: 150px;
+    margin-top: 5px;
+}

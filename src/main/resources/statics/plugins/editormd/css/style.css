@@ -55,11 +55,11 @@ body {
     text-align: center;
 }
 
-#layout {
+#edit {
     text-align: left;
 }
 
-#layout > header, .btns {
+#edit > header, .btns {
     padding: 15px 0;
     width: 90%;
     margin: 0 auto;
@@ -73,7 +73,7 @@ body {
     padding: 2px 8px;
 }
 
-#layout > header > h1 {
+#edit > header > h1 {
     font-size: 20px;
     margin-bottom: 10px;
 }

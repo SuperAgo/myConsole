@@ -27,4 +27,6 @@ public interface MyBlogDao extends BaseMapper<MyBlogEntity> {
     Integer updateByPrimaryKeySelective(MyBlogEntity myBlog);
 
     int insertSelective(MyBlogEntity myBlog);
+
+    int deleteByIds(List<Integer> ids);
 }

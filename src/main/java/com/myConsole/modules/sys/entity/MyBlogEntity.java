@@ -6,6 +6,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 用户博客表
@@ -19,6 +20,9 @@ import java.util.Date;
 public class MyBlogEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	private List<MyArticleLabelEntity> sonLabelList;
+	private List<MyArticleLabelEntity> deleteSonLabelList;
+	private List<Integer> addSonLabelList;
 	/**
 	 * Id
 	 */
@@ -84,5 +88,9 @@ public class MyBlogEntity implements Serializable {
 	 * 精选时间
 	 */
 	private Date selectedTime;
+	/**
+	 * 状态：1可读，0已删除
+	 */
+	private Integer state;
 
 }

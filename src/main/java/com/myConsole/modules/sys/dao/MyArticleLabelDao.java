@@ -4,6 +4,9 @@ import com.myConsole.modules.sys.entity.MyArticleLabelEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * 
  * 
@@ -13,5 +16,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface MyArticleLabelDao extends BaseMapper<MyArticleLabelEntity> {
-	
+
+    List<MyArticleLabelEntity> selectByBlogId(Integer blogId);
 }

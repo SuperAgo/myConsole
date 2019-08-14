@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.myConsole.common.utils.PageUtils;
 import com.myConsole.modules.sys.entity.MyBlogEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,5 +23,11 @@ public interface MyBlogService extends IService<MyBlogEntity> {
     Integer updateByPrimaryKeySelective(MyBlogEntity myBlog);
 
     int insertSelective(MyBlogEntity myBlog);
+
+    int setTop(Integer id);
+
+    int setSelected(Integer id);
+
+    int deleteByIds(List<Integer> ids);
 }
 

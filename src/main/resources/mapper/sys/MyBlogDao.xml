@@ -19,6 +19,7 @@
         <result property="toppingTime" column="topping_time"/>
         <result property="isSelected" column="is_selected"/>
         <result property="selectedTime" column="selected_time"/>
+        <result property="state" column="state"/>
         <result property="labelName" column="label_name"/>
         <result property="nickName" column="nick_name"/>
     </resultMap>
@@ -32,7 +33,12 @@
         JOIN my_user mu ON mb.author = mu.id
         where 1=1
         <if test="params.title != null and params.title != ''">
-            and title LIKE CONCAT('%',#{params.title},'%')
+            and mb.title LIKE CONCAT('%',#{params.title},'%')
+        </if>
+        <if test="params.label != null and params.label != ''">
+            and mb.label = #{params.label}
+        </if><if test="params.state != null and params.state != ''">
+            and mb.state = #{params.state}
         </if>
     </select>
 
@@ -92,6 +98,9 @@
             <if test="content != null">
                 content,
             </if>
+            <if test="state != null">
+                state,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -135,6 +144,9 @@
             </if>
             <if test="content != null">
                 #{content,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=INTEGER},
             </if>
         </trim>
     </insert>
@@ -181,7 +193,19 @@
             <if test="content != null">
                 content = #{content,jdbcType=LONGVARCHAR},
             </if>
+            <if test="state != null">
+                state = #{state,jdbcType=INTEGER},
+            </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="deleteByIds" parameterType="java.util.List">
+        update my_blog
+        set state = 0
+        where id in
+        <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+            #{item}
+        </foreach>
     </update>
 </mapper>

@@ -8,6 +8,7 @@
 
 package com.myConsole.modules.oss.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.myConsole.common.exception.RRException;
 import com.myConsole.common.utils.ConfigConstant;
@@ -31,6 +32,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Map;
@@ -121,6 +124,31 @@ public class SysOssController {
 		sysOssService.save(ossEntity);
 
 		return R.ok().put("url", url);
+	}
+
+	/**
+	 * 上传文件
+	 */
+	@RequestMapping("/editormd-upload")
+	public JSONObject upload(@RequestParam(value = "editormd-image-file", required = true) MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		if (file.isEmpty()) {
+			throw new RRException("上传文件不能为空");
+		}
+
+		//上传文件
+		String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+		String url = OSSFactory.build().uploadSuffix(file.getBytes(), suffix);
+
+		//保存文件信息
+		SysOssEntity ossEntity = new SysOssEntity();
+		ossEntity.setUrl(url);
+		ossEntity.setCreateDate(new Date());
+		sysOssService.save(ossEntity);
+		JSONObject res = new JSONObject();
+		res.put("url", url);
+		res.put("success", 1);
+		res.put("message", "upload success!");
+		return res;
 	}
 
 

@@ -10,5 +10,7 @@
         <result property="blogId" column="blog_id"/>
     </resultMap>
 
-
+    <select id="selectByBlogId" parameterType="java.lang.Integer" resultMap="myArticleLabelMap">
+        select * from my_article_label where blog_id = #{blogId}
+    </select>
 </mapper>
