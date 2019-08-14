@@ -12,19 +12,19 @@
         <form class="layui-form">
             <div class="search-width form-group clearfix">
                 <div>
-                    <label>文章标题</label>
+                    <label>标题</label>
                     <input type="text" name="title" class="layui-input num-width" placeholder="请输入标题">
                 </div>
                 <div>
-                    <label>状态</label>
+                    <label>标签</label>
                     <select type="text" name="label" class="layui-input num-width" id="labelList">
                         <option value="">请选择</option>
                     </select>
                 </div>
-                <button class="layui-btn ml10" lay-submit lay-filter="queryBtn" data-type="reload" id="reload">查询</button>
+                <a class="layui-btn ml10" lay-submit lay-filter="queryBtn" data-type="reload" id="reload"><i class="fa fa-hand-lizard-o" aria-hidden="true"></i>查询</a>
                 <a class="layui-btn" data-type="add"><i class="fa fa-plus-square"></i> 添加</a>
                 <a class="layui-btn" data-type="update"><i class="fa fa-pencil-square-o"></i> 编辑</a>
-                <a class="layui-btn" data-type="delete"><i class="fa fa-times"></i> 删除</a>
+                <a class="layui-btn layui-btn-warm" data-type="delete"><i class="fa fa-trash"></i> 删除</a>
                 <a class="layui-btn layui-btn-normal" data-type="setTop"><i class="fa fa-hand-o-up" title="置顶" aria-hidden="true"></i> 置顶</a>
                 <a class="layui-btn layui-btn-danger" data-type="setSelected"><i class="fa fa-thumbs-o-up" title="加精" aria-hidden="true"></i> 加精</a>
             </div>
