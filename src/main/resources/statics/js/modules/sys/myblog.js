@@ -10,7 +10,7 @@ layui.use(['table','form'], function () {
         , limit: 15
         , cols: [[ //表头
             {field: 'id', checkbox: true}
-            , {field: 'title', title: '文章标题', align: 'center'}
+            , {field: 'title', title: '文章标题',width: 250,  align: 'center'}
             , {field: 'labelName', title: '主标签', align: 'center'}
             , {field: 'nickName', title: '作者', align: 'center'}
             , {field: 'insTime', title: '新增时间', align: 'center'}
@@ -21,10 +21,10 @@ layui.use(['table','form'], function () {
                 field: 'isTop', title: '标签', align: 'center', templet: function (d) {
                     var status = ''
                     if (d.isTop == 1) {
-                        status += '<span class="layui-badge layui-bg-blue"><i class="fa fa-hand-o-up" title="置顶" aria-hidden="true"></i></span>  ';
+                        status += '<span class="layui-badge layui-bg-blue" title="置顶"><i class="fa fa-hand-o-up" aria-hidden="true"></i></span>  ';
                     }
                     if (d.isSelected == 1) {
-                        status += '<span class="layui-badge"><i class="fa fa-thumbs-o-up" title="精选" aria-hidden="true"></i></span>';
+                        status += '<span class="layui-badge" title="精选"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></span>';
                     }
                     return status;
                 }
