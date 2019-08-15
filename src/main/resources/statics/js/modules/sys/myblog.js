@@ -10,15 +10,15 @@ layui.use(['table','form'], function () {
         , limit: 15
         , cols: [[ //表头
             {field: 'id', checkbox: true}
-            , {field: 'title', title: '文章标题', width: 450, align: 'center'}
-            , {field: 'labelName', title: '主标签', width: 150, align: 'center'}
-            , {field: 'nickName', title: '作者', width: 120, align: 'center'}
-            , {field: 'insTime', title: '新增时间', width: 180, align: 'center'}
-            , {field: 'reader', title: '阅读', width: 120, align: 'center'}
-            , {field: 'comments', title: '评论', width: 120, align: 'center'}
-            , {field: 'compliments', title: '点赞', width: 120, align: 'center'}
+            , {field: 'title', title: '文章标题', align: 'center'}
+            , {field: 'labelName', title: '主标签', align: 'center'}
+            , {field: 'nickName', title: '作者', align: 'center'}
+            , {field: 'insTime', title: '新增时间', align: 'center'}
+            , {field: 'reader', title: '阅读', align: 'center'}
+            , {field: 'comments', title: '评论', align: 'center'}
+            , {field: 'compliments', title: '点赞', align: 'center'}
             , {
-                field: 'isTop', title: '标签', width: 148, align: 'center', templet: function (d) {
+                field: 'isTop', title: '标签', align: 'center', templet: function (d) {
                     var status = ''
                     if (d.isTop == 1) {
                         status += '<span class="layui-badge layui-bg-blue"><i class="fa fa-hand-o-up" title="置顶" aria-hidden="true"></i></span>  ';

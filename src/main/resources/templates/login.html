@@ -23,8 +23,8 @@
     <style>
         body {
             height: 100%;
-            background: #000000;
-            background-image: url('${request.contextPath}/statics/images/loginbackground.jpg');
+            background: rgba(0, 0, 0, 0);
+            background-image: url('${request.contextPath}/statics/images/back.jpg');
             overflow: hidden;
         }
 
@@ -40,9 +40,21 @@
             border: 1px solid transparent;
             border-radius: 4px;
         }
+
+        input:-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {
+            -webkit-text-fill-color: black !important;
+            -webkit-box-shadow: 0 0 0px 1000px transparent  inset !important;
+            background-color:transparent;
+            background-image: none;
+            transition: background-color 50000s ease-in-out 0s; //背景色透明  生效时长  过渡效果  启用时延迟的时间
+        }
+        input {
+            background-color:transparent;
+            color: black !important;
+        }
     </style>
 </head>
-<body style="height: 100%">
+<body>
 <dl class="admin_login" id="rrapp" v-cloak>
     <dt>
         <strong>FreeBlog</strong>
@@ -65,7 +77,7 @@
         &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" @click="refreshCode">点击刷新</a>
     </dd>
     <dd>
-        <input type="button" @click="login" value="立即登陆" class="submit_btn"/>
+        <input type="button" @click="login" value="登陆" class="submit_btn"/>
     </dd>
     <dd>
         <p>© 2015-2019 FreeBlog 版权所有</p>
@@ -78,8 +90,6 @@
 <script src="${request.contextPath}/statics/libs/jquery.slimscroll.min.js"></script>
 <script src="${request.contextPath}/statics/libs/fastclick.min.js"></script>
 <script src="${request.contextPath}/statics/libs/app.js"></script>
-<script src="${request.contextPath}/statics/js/Particleground.js"
-        tppabs="${request.contextPath}/statics/js/Particleground.js"></script>
 <script type="text/javascript">
     var vm = new Vue({
         el: '#rrapp',
@@ -95,12 +105,6 @@
             if (self != top) {
                 top.location.href = self.location.href;
             }
-        },
-        created: function () {
-            $('body').particleground({
-                dotColor: 'rgba(139,163,189,0.4)',
-                lineColor: 'rgba(185,186,189,0.13)'
-            });
         },
         methods: {
             refreshCode: function () {

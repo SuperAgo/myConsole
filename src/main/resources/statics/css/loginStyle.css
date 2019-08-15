@@ -125,7 +125,7 @@ button, input, select, textarea {
 }
 
 a {
-    color: #06c1ae;
+    color: #111;
     text-decoration: none;
     outline: 0
 }
@@ -254,7 +254,7 @@ small, weak {
     font-size: 20px;
     font-weight: bold;
     text-align: center;
-    color: #00000000;
+    color: #111;
     text-shadow: 0 0 1px #a7a7a7;
     margin-bottom: 15px;
 }
@@ -284,8 +284,8 @@ small, weak {
     width: 90%;
     text-indent: 2em;
     border: none;
-    background: rgba(148, 158, 153, 0.51);
-    color: white;
+    background: rgba(195, 195, 195, 0.51);
+    color: black;
 }
 
 .admin_login dd .login_txtbx::-webkit-input-placeholder {
@@ -315,7 +315,7 @@ small, weak {
     height: 42px;
     line-height: 42px;
     font-size: 20px;
-    color: #a7a7a7;
+    color: #111;
 }
 
 .admin_login dd.user_icon:before {
@@ -375,11 +375,11 @@ small, weak {
     border: none;
     font-size: 16px;
     background: rgba(0, 0, 0, 0);
-    color: #f8f8f8;
+    color: #111;
 }
 
 .admin_login dd .submit_btn:hover {
-    background: rgba(148, 158, 153, 0.51);
+    background: rgba(195, 195, 195, 0.51);
     color: #f4f4f4;
 }
 

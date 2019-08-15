@@ -5,28 +5,42 @@
     <link rel="stylesheet" href="${request.contextPath}/statics/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="${request.contextPath}/statics/plugins/layui/css/layui.css">
     <link rel="stylesheet" type="text/css" media="screen" href="${request.contextPath}/statics/css/your_style.css"/>
+    <style>
+        .search{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            height: 42px;
+            line-height: 42px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
 </head>
 <body>
 <div>
     <div v-show="showList" class="content">
         <form class="layui-form">
-            <div class="search-width form-group clearfix">
-                <div>
-                    <label>标题</label>
-                    <input type="text" name="title" class="layui-input num-width" placeholder="请输入标题">
+            <div class="layui-row">
+                <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
+                    <div class="search-width form-group clearfix">
+                        <label class="search"><i class="fa fa-search" aria-hidden="true"></i></label>
+                        <input type="text" name="title" class="layui-input num-width pl20" placeholder="请输入标题">
+                        <div class="ml10">
+                            <select type="text" name="label" class="layui-input num-width" id="labelList">
+                                <option value="">请选择标签</option>
+                            </select>
+                        </div>
+                        <a class="layui-btn layui-btn-primary ml10" lay-submit lay-filter="queryBtn" data-type="reload" id="reload" title="查询"><i class="fa fa-filter" aria-hidden="true"></i></a>
+                    </div>
                 </div>
-                <div>
-                    <label>标签</label>
-                    <select type="text" name="label" class="layui-input num-width" id="labelList">
-                        <option value="">请选择</option>
-                    </select>
+                <div class="layui-col-xs12 layui-col-sm6 layui-col-md4">
+                    <a class="layui-btn layui-btn-primary" data-type="add" title="添加"><i class="fa fa-plus-square"></i></a>
+                    <a class="layui-btn layui-btn-primary" data-type="update" title="编辑"><i class="fa fa-pencil-square-o"></i></a>
+                    <a class="layui-btn layui-btn-warm" data-type="delete" title="删除"><i class="fa fa-trash"></i></a>
+                    <a class="layui-btn layui-btn-normal" data-type="setTop" title="置顶">置顶</a>
+                    <a class="layui-btn layui-btn-danger" data-type="setSelected" title="加精">加精</a>
                 </div>
-                <a class="layui-btn ml10" lay-submit lay-filter="queryBtn" data-type="reload" id="reload"><i class="fa fa-hand-lizard-o" aria-hidden="true"></i>查询</a>
-                <a class="layui-btn" data-type="add"><i class="fa fa-plus-square"></i> 添加</a>
-                <a class="layui-btn" data-type="update"><i class="fa fa-pencil-square-o"></i> 编辑</a>
-                <a class="layui-btn layui-btn-warm" data-type="delete"><i class="fa fa-trash"></i> 删除</a>
-                <a class="layui-btn layui-btn-normal" data-type="setTop"><i class="fa fa-hand-o-up" title="置顶" aria-hidden="true"></i> 置顶</a>
-                <a class="layui-btn layui-btn-danger" data-type="setSelected"><i class="fa fa-thumbs-o-up" title="加精" aria-hidden="true"></i> 加精</a>
             </div>
         </form>
         <table id="myblogTable" lay-filter="myblogTable"></table>

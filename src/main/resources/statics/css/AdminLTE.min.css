@@ -145,7 +145,7 @@ a {
 a:hover, a:active, a:focus {
     outline: none;
     text-decoration: none;
-    color: #72afd2
+    color: #111
 }
 
 .page-header {
@@ -4629,7 +4629,7 @@ table.text-center, table.text-center td, table.text-center th {
 }
 
 .bg-red, .callout.callout-danger, .alert-danger, .alert-error, .label-danger, .modal-danger .modal-body {
-    background-color: #808080a8 !important
+    background-color: rgba(195, 195, 195, 0.51); !important
 }
 
 .bg-yellow, .callout.callout-warning, .alert-warning, .label-warning, .modal-warning .modal-body {
