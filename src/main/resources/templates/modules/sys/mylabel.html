@@ -2,27 +2,94 @@
 <html>
 <head>
     <title>文章分类标签</title>
-		<#include "/header.html">
+    <link rel="stylesheet" href="${request.contextPath}/statics/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${request.contextPath}/statics/plugins/layui/css/layui.css" media="all">
+    <script src="${request.contextPath}/statics/plugins/layui/layui.js"></script>
+    <script src="${request.contextPath}/statics/libs/jquery.min.js"></script>
+    <script src="${request.contextPath}/statics/libs/ajaxupload.js"></script>
+    <style type="text/css">
+        body {
+            margin: 10px auto;
+        }
+
+        ul {
+            margin-top: 5px;
+        }
+
+        li {
+            margin-top: 3px;
+        }
+
+        .layui-form-switch {
+            margin-top: 0;
+        }
+
+        #tree1 ul + ul {
+            border-top: 1px dashed #e2e2e2;
+        }
+    </style>
 </head>
 <body>
-<div id="rrapp" v-cloak>
-    <div v-show="showList">
-        <div class="grid-btn">
-			<#if shiro.hasPermission("sys:mylabel:save")>
-            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
-			</#if>
-			<#if shiro.hasPermission("sys:mylabel:update")>
-            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
-			</#if>
-			<#if shiro.hasPermission("sys:mylabel:delete")>
-            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
-			</#if>
-        </div>
-        <table id="jqGrid"></table>
-        <div id="jqGridPager"></div>
-    </div>
+<div id="rrapp">
+    <table class="layui-table layui-form" id="tree-table"></table>
 
-    <div v-show="!showList" class="panel panel-default">
+    <div style="display: none" id="detail" class="panel panel-default">
+        <div>
+            <form class="layui-form" lay-filter="myLabel">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">标签名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="labelName" required lay-verify="required" placeholder="请输入标签名称"
+                               autocomplete="off" class="layui-input">
+                        <input type="hidden" name="id">
+                        <input type="hidden" name="url">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">上级菜单</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="parentName" placeholder="上级菜单"
+                               autocomplete="off" class="layui-input" disabled>
+                        <input type="hidden" name="parentId">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">类型</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="tabGradeName" placeholder="类型"
+                               autocomplete="off" class="layui-input" disabled>
+                        <input type="hidden" name="tabGrade">
+                    </div>
+                </div>
+                <div class="layui-form-item" style="height: 220px;" id="bannerDiv">
+                    <label class="layui-form-label" style="line-height: 150px;">banner图</label>
+                    <div class="layui-input-block">
+                        <div class="layui-row" style="height: 160px;">
+                            <div class="layui-col-md9">
+                                <img src="" style="display: none;max-width: 490px;max-height: 160px;height: auto;width: auto;"
+                                     id="background" class="layui-input">
+<!--                                <input type="hidden" name="background" id="backgroundInput" required lay-verify="required">-->
+                            </div>
+                            <div class="layui-col-md3">
+                                <button type="button" class="layui-btn" id="upload">
+                                    <i class="layui-icon">&#xe67c;</i>上传图片
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit lay-filter="formSubmit" id="formSubmit">立即提交</button>
+                        <button class="layui-btn"  class="layui-btn layui-btn-primary" onclick="backDlog()"
+                                id="formReset">返回
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--<div v-show="!showList" class="panel panel-default">
         <div class="panel-heading">{{title}}</div>
         <form class="form-horizontal">
 														                    <div class="form-group">
@@ -85,7 +152,7 @@
                 &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
             </div>
         </form>
-    </div>
+    </div>-->
 </div>
 
 <script src="${request.contextPath}/statics/js/modules/sys/mylabel.js?_${.now?long}"></script>

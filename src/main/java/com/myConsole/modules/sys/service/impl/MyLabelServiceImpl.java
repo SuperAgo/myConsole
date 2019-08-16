@@ -36,4 +36,9 @@ public class MyLabelServiceImpl extends ServiceImpl<MyLabelDao, MyLabelEntity> i
         return myLabelDao.getSonLabelList();
     }
 
+    @Override
+    public List<MyLabelEntity> getAlllabel() {
+        return myLabelDao.getAlllabel();
+    }
+
 }

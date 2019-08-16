@@ -18,4 +18,6 @@ import java.util.Map;
 public interface MyLabelDao extends BaseMapper<MyLabelEntity> {
 
     List<Map> getSonLabelList();
+
+    List<MyLabelEntity> getAlllabel();
 }

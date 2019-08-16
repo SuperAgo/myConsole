@@ -19,5 +19,7 @@ public interface MyLabelService extends IService<MyLabelEntity> {
     PageUtils queryPage(Map<String, Object> params);
 
     List<Map> getSonLabelList();
+
+    List<MyLabelEntity> getAlllabel();
 }
 

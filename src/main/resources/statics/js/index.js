@@ -1,3 +1,13 @@
+layui.use('form', function(){
+	var form = layui.form;
+
+	//监听提交
+	form.on('submit(formDemo)', function(data){
+		layer.msg(JSON.stringify(data.field));
+		return false;
+	});
+});
+
 //生成菜单
 var menuItem = Vue.extend({
     name: 'menu-item',
@@ -57,11 +67,12 @@ var vm = new Vue({
 			});
 		},
 		updatePassword: function(){
+			// var weight=$("html").width()+"px";
+			// var height=$("html").height()+"px";
 			layer.open({
 				type: 1,
-				skin: 'layui-layer-molv',
 				title: "修改密码",
-				area: ['550px', '270px'],
+				// area: [weight, height],
 				shadeClose: false,
 				content: jQuery("#passwordLayer"),
 				btn: ['修改','取消'],

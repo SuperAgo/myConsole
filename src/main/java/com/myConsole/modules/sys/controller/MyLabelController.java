@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.myConsole.common.validator.ValidatorUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +44,16 @@ public class MyLabelController {
         PageUtils page = myLabelService.queryPage(params);
 
         return R.ok().put("page", page);
+    }
+
+    /**
+     * 全部label
+     */
+    @RequestMapping("/getAll")
+    public JSONArray getAlllabel(){
+        List<MyLabelEntity> myLabelList= myLabelService.getAlllabel();
+
+        return JSONArray.parseArray(JSON.toJSONString(myLabelList));
     }
 
 

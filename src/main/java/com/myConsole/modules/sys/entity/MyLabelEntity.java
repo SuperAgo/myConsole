@@ -20,7 +20,8 @@ import java.util.List;
 @TableName("my_label")
 public class MyLabelEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	private String parentName;
+	private Integer blogNum;
 	/**
 	 * Id
 	 */
@@ -62,12 +63,4 @@ public class MyLabelEntity implements Serializable {
 	 * 地址
 	 */
 	private String url;
-	/**
-	 * ztree属性
-	 */
-	@TableField(exist=false)
-	private Boolean open;
-
-	@TableField(exist=false)
-	private List<?> list;
 }
