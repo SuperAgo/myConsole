@@ -53,7 +53,7 @@ mybatis-plus:
       id-type: AUTO
       #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
       field-strategy: NOT_NULL
-      #驼峰下划线转换
+      #驼峰下划线转换F
       column-underline: true
       logic-delete-value: -1
       logic-not-delete-value: 0

@@ -10,10 +10,10 @@ layui.use(['table','form'], function () {
         , limit: 15
         , cols: [[ //表头
             {field: 'id', checkbox: true}
-            , {field: 'title', title: '文章标题',width: 250,  align: 'center'}
-            , {field: 'labelName', title: '主标签', align: 'center'}
-            , {field: 'nickName', title: '作者', align: 'center'}
-            , {field: 'insTime', title: '新增时间', align: 'center'}
+            , {field: 'title', title: '文章标题',width: 350,  align: 'center'}
+            , {field: 'labelName', title: '主标签',width: 180, align: 'center'}
+            , {field: 'nickName', title: '作者',width: 150, align: 'center'}
+            , {field: 'insTime', title: '新增时间',width: 180, align: 'center'}
             , {field: 'reader', title: '阅读', align: 'center'}
             , {field: 'comments', title: '评论', align: 'center'}
             , {field: 'compliments', title: '点赞', align: 'center'}

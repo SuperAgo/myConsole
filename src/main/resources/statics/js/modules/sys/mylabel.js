@@ -105,11 +105,9 @@ layui.use(['treeTable', 'layer', 'code', 'form'], function () {
     treeTable.on('tree(update)', function (data) {
         var item = data.item;
         var tabGradeName = '文章分类';
-        var url = 'label';
         if (item.tabGrade == 1) {
             $("#bannerDiv").hide();
             tabGradeName = '标题栏';
-            url = '';
         }
         form.val("myLabel", {
             id: item.id,
@@ -117,7 +115,7 @@ layui.use(['treeTable', 'layer', 'code', 'form'], function () {
             parentName: item.parentName ? item.parentName : " ",
             tabGradeName: tabGradeName,
             tabGrade: item.tabGrade,
-            url: url
+            url: item.url
         })
         form.render();
         $("#tree-table").hide();
@@ -177,7 +175,6 @@ layui.use(['treeTable', 'layer', 'code', 'form'], function () {
             delete myLabel["id"];
         }
         var url = myLabel.id == null ? "/sys/mylabel/save" : "/sys/mylabel/update";
-        console.log(url)
         $.ajax({
             type: "POST",
             url: url,
