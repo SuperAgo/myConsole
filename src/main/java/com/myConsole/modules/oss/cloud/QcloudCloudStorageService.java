@@ -9,6 +9,7 @@
 package com.myConsole.modules.oss.cloud;
 
 
+import com.myConsole.modules.oss.entity.SysOssEntity;
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;
 import com.qcloud.cos.request.UploadFileRequest;
@@ -19,6 +20,7 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * 腾讯云存储
@@ -84,5 +86,10 @@ public class QcloudCloudStorageService extends CloudStorageService {
     @Override
     public String uploadSuffix(InputStream inputStream, String suffix) {
         return upload(inputStream, getPath(config.getQcloudPrefix(), suffix));
+    }
+
+    @Override
+    public Boolean deleFile(List<SysOssEntity> ossEntityList) {
+        return null;
     }
 }

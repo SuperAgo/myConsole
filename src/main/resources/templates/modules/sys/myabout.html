@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>关于</title>
+    <link rel="stylesheet" href="${request.contextPath}/statics/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="${request.contextPath}/statics/plugins/editormd/css/style.css"/>
+    <link rel="stylesheet" href="${request.contextPath}/statics/plugins/editormd/css/editormd.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="${request.contextPath}/statics/plugins/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="${request.contextPath}/statics/css/your_style.css"/>
+</head>
+<body>
+<div>
+    <div id="dataTable" style="display: block">
+        <div class="search-width form-group clearfix">
+            <a class="layui-btn layui-btn-primary" data-type="add" title="添 加"><i class="fa fa-plus-square"></i></a>
+            <a class="layui-btn layui-btn-primary" data-type="delete" title="删 除"><i class="fa fa-trash"></i></a>
+        </div>
+        <table id="aboutTable" lay-filter="aboutTable"></table>
+    </div>
+
+    <div id="detail" style="display: none">
+        <div id="edit">
+            <div id="test-editormd">
+                <textarea style="display:none;" id="makerdownText"></textarea>
+
+            </div>
+        </div>
+        <input type="hidden" name="id" id="aboutId">
+    </div>
+</div>
+<script src="${request.contextPath}/statics/plugins/layui/layui.js"></script>
+<script src="${request.contextPath}/statics/libs/jquery.min.js"></script>
+<script src="${request.contextPath}/statics/plugins/editormd/editormd.min.js"></script>
+<script src="${request.contextPath}/statics/js/modules/sys/myabout.js?_${.now?long}"></script>
+<script>
+    var testEditor;
+    function getEditorMd() {
+        testEditor = editormd("test-editormd", {
+            width: "100%",
+            height: $(window).height() - 15,
+            syncScrolling: "simple",
+            path: "${request.contextPath}/statics/plugins/editormd/lib/",
+            emoji: true,
+            taskList: true,
+            tex: true, // 默认不解析
+            flowChart: true, // 默认不解析
+            sequenceDiagram: true, // 默认不解析
+            codeFold: true,
+            saveHTMLToTextarea:true,
+            /**上传图片相关配置如下*/
+            imageUpload: true,
+            watch:false,
+            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL: "/sys/oss/editormd-upload",//注意你后端的上传图片服务地址
+            toolbarIcons: function () {
+                return [
+                    "undo", "redo","emoji", "lastStep", "nextStep"
+                ]
+            },
+            toolbarIconsClass: {
+                lastStep: "fa fa-reply",  // 指定一个FontAawsome的图标类
+                nextStep: "fa-floppy-o"  // 指定一个FontAawsome的图标类
+            },
+            toolbarHandlers: {
+                lastStep: function (cm, icon, cursor, selection) {
+                    backTable();
+                },
+                nextStep: function (cm, icon, cursor, selection) {
+                    if (testEditor.getHTML()) {
+                        saveDetail(encodeURI(testEditor.getHTML()));
+                    }
+                },
+            },
+            lang: {
+                toolbar: {
+                    lastStep: "取消编辑",
+                    nextStep: "保存"
+                }
+            },
+        });
+    }
+</script>
+</body>
+</html>

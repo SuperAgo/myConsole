@@ -14,7 +14,7 @@ $(function () {
 			{ label: '点赞数量', name: 'compliments', index: 'compliments', width: 80 }			
         ],
 		viewrecords: true,
-        height: 385,
+        height: $(window).height()-150,
         rowNum: 10,
 		rowList : [10,30,50],
         rownumbers: true, 

@@ -7,7 +7,7 @@ layui.use(['table','form'], function () {
         , height: 'full-60'
         , url: '/sys/myblog/list' //数据接口
         , page: true //开启分页
-        , limit: 15
+        , limit: 20
         , cols: [[ //表头
             {field: 'id', checkbox: true}
             , {field: 'title', title: '文章标题',width: 350,  align: 'center'}
@@ -53,8 +53,6 @@ layui.use(['table','form'], function () {
 
     var $ = layui.$, active = {
         add: function () {
-            var checkStatus = table.checkStatus('myblogTable')
-                , data = checkStatus.data;
             openEdit();
         },
         update: function () {

@@ -4,6 +4,8 @@ import com.myConsole.modules.sys.entity.MyUserEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.ArrayList;
+
 /**
  * 用户表
  * 
@@ -13,5 +15,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface MyUserDao extends BaseMapper<MyUserEntity> {
-	
+
+    ArrayList<String> queryAllSubscribedMailboxes();
 }

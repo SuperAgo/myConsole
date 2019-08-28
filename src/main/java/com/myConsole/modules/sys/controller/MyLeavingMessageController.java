@@ -18,7 +18,6 @@ import com.myConsole.common.utils.PageUtils;
 import com.myConsole.common.utils.R;
 
 
-
 /**
  * 用户留言表
  *
@@ -33,11 +32,31 @@ public class MyLeavingMessageController {
     private MyLeavingMessageService myLeavingMessageService;
 
     /**
+     * 留言板
+     */
+    @RequestMapping("/myMessageBoard")
+    public R myMessageBoard() {
+        return R.ok().put("data", myLeavingMessageService.getMyMessageBoard());
+    }
+
+    /**
+     * 更改留言板
+     */
+    @RequestMapping("/changeMessageBoards")
+    public R changeMessageBoards(@RequestParam Map myMessageBoard) {
+        int i = myLeavingMessageService.changeMessageBoards(myMessageBoard);
+        if (i < 1) {
+            return R.error("修改失败！");
+        }
+        return R.ok("修改成功！");
+    }
+
+    /**
      * 列表
      */
     @RequestMapping("/list")
     @RequiresPermissions("sys:myleavingmessage:list")
-    public R list(@RequestParam Map<String, Object> params){
+    public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = myLeavingMessageService.queryPage(params);
 
         return R.ok().put("page", page);
@@ -49,7 +68,7 @@ public class MyLeavingMessageController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("sys:myleavingmessage:info")
-    public R info(@PathVariable("id") Integer id){
+    public R info(@PathVariable("id") Integer id) {
         MyLeavingMessageEntity myLeavingMessage = myLeavingMessageService.getById(id);
 
         return R.ok().put("myLeavingMessage", myLeavingMessage);
@@ -60,7 +79,7 @@ public class MyLeavingMessageController {
      */
     @RequestMapping("/save")
     @RequiresPermissions("sys:myleavingmessage:save")
-    public R save(@RequestBody MyLeavingMessageEntity myLeavingMessage){
+    public R save(@RequestBody MyLeavingMessageEntity myLeavingMessage) {
         myLeavingMessageService.save(myLeavingMessage);
 
         return R.ok();
@@ -71,10 +90,10 @@ public class MyLeavingMessageController {
      */
     @RequestMapping("/update")
     @RequiresPermissions("sys:myleavingmessage:update")
-    public R update(@RequestBody MyLeavingMessageEntity myLeavingMessage){
+    public R update(@RequestBody MyLeavingMessageEntity myLeavingMessage) {
         ValidatorUtils.validateEntity(myLeavingMessage);
         myLeavingMessageService.updateById(myLeavingMessage);
-        
+
         return R.ok();
     }
 
@@ -83,7 +102,7 @@ public class MyLeavingMessageController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("sys:myleavingmessage:delete")
-    public R delete(@RequestBody Integer[] ids){
+    public R delete(@RequestBody Integer[] ids) {
         myLeavingMessageService.removeByIds(Arrays.asList(ids));
 
         return R.ok();

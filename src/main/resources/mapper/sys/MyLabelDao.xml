@@ -52,6 +52,59 @@
         WHERE
             1 = 1
         ORDER BY
-            ml.id
+            ml.tab_grade,ml.sort
     </select>
+
+    <select id="getBlogTabByBlogId" parameterType="java.lang.Integer" resultType="java.util.HashMap">
+    SELECT
+        mb.title AS tabName,
+        mb.id AS tabId,
+        'detail' as tabUrl
+    FROM
+        my_blog AS mb
+    WHERE
+        mb.id = #{blogId}
+  </select>
+
+    <select id="getTabByBlogId" parameterType="java.lang.Integer" resultType="java.util.HashMap">
+    SELECT
+        ml.label_name AS tabName,
+        ml.id AS tabId,
+        ml.url as tabUrl
+    FROM
+        my_label AS ml
+    JOIN my_blog as mb ON mb.label = ml.id
+    WHERE
+        mb.id = #{blogId}
+  </select>
+
+    <select id="getTabBySonId" parameterType="java.lang.Integer" resultType="java.util.HashMap">
+    SELECT
+        ml.label_name AS tabName,
+        ml.id AS tabId,
+        ml.url as tabUrl
+    FROM
+        my_label AS ml
+        JOIN my_label AS ml2 ON ml2.parent_id=ml.id
+    WHERE
+        ml2.id = #{tabId}
+  </select>
+
+    <select id="selectArticleSonLabels" parameterType="java.lang.Integer" resultType="java.util.HashMap">
+    SELECT
+        ml.label_name AS tabName,
+        ml.id AS tabId,
+        ml.url AS tabUrl
+    FROM
+        my_label AS ml
+    WHERE
+        ml.id IN (
+            SELECT
+                label_id
+            FROM
+                my_article_label
+            WHERE
+                blog_id = #{blogId}
+        )
+  </select>
 </mapper>

@@ -85,10 +85,14 @@ layui.use(['treeTable', 'layer', 'code', 'form'], function () {
             tabGrade = 1;
             url = '';
         }
+        $("#background").attr("src","");
+        $("#background").hide();
         form.val("myLabel", {
             id: "",
             labelName: "",
             parentName: item.labelName,
+            background: "",
+            sort: "",
             parentId: item.id,
             tabGradeName: tabGradeName,
             tabGrade: tabGrade,
@@ -109,9 +113,15 @@ layui.use(['treeTable', 'layer', 'code', 'form'], function () {
             $("#bannerDiv").hide();
             tabGradeName = '标题栏';
         }
+        if(item.background){
+            $("#background").attr("src",item.background);
+            $("#background").show();
+        }
         form.val("myLabel", {
             id: item.id,
             labelName: item.labelName,
+            sort: item.sort,
+            background: item.background,
             parentName: item.parentName ? item.parentName : " ",
             tabGradeName: tabGradeName,
             tabGrade: item.tabGrade,

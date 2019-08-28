@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8"/>
+    <title>Simple example - Editor.md examples</title>
+    <link rel="stylesheet" href="${request.contextPath}/statics/plugins/layui/css/layui.css" media="all">
+    <script src="${request.contextPath}/statics/libs/ajaxupload.js"></script>
+</head>
+<body>
+<div id="detail">
+    <div>
+        <form class="layui-form layui-form-pane" lay-filter="myMessageBoard">
+            <div class="layui-form-item" pane style="line-height: 160px;">
+                <label class="layui-form-label" style="line-height: 150px;">banner图</label>
+                <div class="layui-input-block" style="line-height: 160px;">
+                    <div class="layui-row">
+                        <div class="layui-col-md9">
+                            <img name="banner" src=""
+                                 style="max-width: 490px;max-height: 160px;height: auto;width: auto;"
+                                 id="banner" class="layui-input">
+                            <input type="hidden" name="messageBoardPictures" id="bannerInput" required lay-verify="required">
+                        </div>
+                        <div class="layui-col-md3">
+                            <button type="button" class="layui-btn" id="upload">
+                                <i class="layui-icon">&#xe67c;</i>更换图片
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item" pane>
+                <label class="layui-form-label">寄语</label>
+                <div class="layui-input-block">
+                    <input type="text" name="messageBoards" id="messageBoards" placeholder="请输入留言板寄语"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <a class="layui-btn" onclick="changeMessageBoards()">提交</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+<script src="${request.contextPath}/statics/libs/jquery.min.js"></script>
+<script src="${request.contextPath}/statics/plugins/layui/layui.js"></script>
+<script type="text/javascript">
+    layui.use('form', function () {
+        var form = layui.form;
+
+        var getDetail = function () {
+            $.ajax({
+                type: "get",
+                url: "/sys/myleavingmessage/myMessageBoard",
+                async: false,
+                success: function (r) {
+                    $("#banner").attr("src", r.data.messageBoardPictures);
+                    form.val("myMessageBoard", r.data)
+                }
+            });
+        }
+
+        window.changeMessageBoards=function(){
+            if(!$("#messageBoards").val()){
+                layer.msg("寄语不能为空哦！");
+                return false;
+            }
+            var myMessageBoard = {
+                messageBoardPictures:$("#bannerInput").val(),
+                messageBoards:$("#messageBoards").val()
+            }
+            $.ajax({
+                type: "post",
+                url: "/sys/myleavingmessage/changeMessageBoards",
+                async: false,
+                data:myMessageBoard,
+                success: function (r) {
+                    layer.msg(r.msg);
+                }
+            });
+        }
+
+        layer.ready(function () {
+            getDetail();
+        });
+
+        new AjaxUpload('#upload', {
+            action: "/sys/oss/upload",
+            name: 'file',
+            autoSubmit: true,
+            responseType: "json",
+            onSubmit: function (file, extension) {
+                if (!(extension && /^(jpg|jpeg|gif|png)$/.test(extension.toLowerCase()))) {
+                    alert('只支持jpg、png、jpeg、gif格式的图片！');
+                    return false;
+                }
+            },
+            onComplete: function (file, r) {
+                if (r.code == 0) {
+                    $("#banner").attr("src", r.url);
+                    $("#bannerInput").val(r.url);
+                } else {
+                    alert(r.msg);
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

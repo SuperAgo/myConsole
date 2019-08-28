@@ -4,6 +4,8 @@ import com.myConsole.modules.sys.entity.MyLeavingMessageEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.Map;
+
 /**
  * 用户留言表
  * 
@@ -13,5 +15,8 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface MyLeavingMessageDao extends BaseMapper<MyLeavingMessageEntity> {
-	
+
+    Map getMyMessageBoard();
+
+    int changeMessageBoards(Map myMessageBoard);
 }

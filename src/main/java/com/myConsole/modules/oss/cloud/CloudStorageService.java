@@ -9,10 +9,12 @@
 package com.myConsole.modules.oss.cloud;
 
 import com.myConsole.common.utils.DateUtils;
+import com.myConsole.modules.oss.entity.SysOssEntity;
 import org.apache.commons.lang.StringUtils;
 
 import java.io.InputStream;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -75,4 +77,10 @@ public abstract class CloudStorageService {
      */
     public abstract String uploadSuffix(InputStream inputStream, String suffix);
 
+    /**
+     * 删除文件
+     * @param ossEntityList
+     * @return
+     */
+    public abstract Boolean deleFile(List<SysOssEntity> ossEntityList);
 }

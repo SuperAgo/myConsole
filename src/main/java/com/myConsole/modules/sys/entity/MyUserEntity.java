@@ -78,40 +78,6 @@ public class MyUserEntity implements Serializable {
 	 */
 	private String regionCode;
 	/**
-	 * 手机号
-	 */
-	private String background;
-	/**
-	 * 小图1
-	 */
-	private String picOne;
-	/**
-	 * 小图2
-	 */
-	private String picTwo;
-	/**
-	 * 小图3
-	 */
-	private String picThree;
-	/**
-	 * 小图4
-	 */
-	private String picFour;
-	/**
-	 * 留言板背景图
-	 */
-	private String messageBoardPictures;
-	/**
-	 * 留言板寄语
-	 */
-	private String messageBoards;
-	/**
-	 * 状态
-            1使用中
-            0已删除
-	 */
-	private Integer state;
-	/**
 	 * 0未实名
             1已实名
 	 */

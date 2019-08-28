@@ -9,30 +9,23 @@ $(function () {
             {label: '手机号', name: 'telephone', index: 'telephone', width: 80},
             {label: '邮箱', name: 'email', index: 'email', width: 80},
             {label: '生日', name: 'birthday', index: 'birthday', width: 80},
-            {label: '网络头像', name: 'networkAvatar', index: 'network_avatar', width: 80},
-            {label: '1男 2女', name: 'sex', index: 'sex', width: 80},
+            {label: '网络头像', name: 'networkAvatar', index: 'network_avatar', width: 110, formatter: function (value, options, row) {
+                    return '<img src="http://www.super100wj.top:8080/'+value+'" style="width: 100px"/>'
+                }},
+            {label: '性别', name: 'sex', index: 'sex', width: 80,formatter: function (value, options, row) {
+                if(value){
+                    return value === 2 ?
+                        '<span class="label label-danger">女</span>' :
+                        '<span class="label label-success">男</span>';
+                }else{
+                    return '<span class="label label-info">未知</span>'
+                }
+
+                }},
             {label: '个人签名', name: 'signature', index: 'signature', width: 80},
             {label: '简介', name: 'introduction', index: 'introduction', width: 80},
             {label: '爱好', name: 'hobby', index: 'hobby', width: 80},
             {label: '地区', name: 'region', index: 'region', width: 80},
-            {label: '手机号', name: 'background', index: 'background', width: 80},
-            {label: '小图1', name: 'picOne', index: 'pic_one', width: 80},
-            {label: '小图2', name: 'picTwo', index: 'pic_two', width: 80},
-            {label: '小图3', name: 'picThree', index: 'pic_three', width: 80},
-            {label: '小图4', name: 'picFour', index: 'pic_four', width: 80},
-            {label: '留言板背景图', name: 'messageBoardPictures', index: 'message_board_pictures', width: 80},
-            {label: '留言板寄语', name: 'messageBoards', index: 'message_boards', width: 80},
-            {
-                label: '状态',
-                name: 'state',
-                index: 'State',
-                width: 80,
-                formatter: function (value, options, row) {
-                    return value === 0 ?
-                        '<span class="label label-danger">已删除</span>' :
-                        '<span class="label label-success">使用中</span>';
-                }
-            },
             {
                 label: '实名状态', name: 'struts', index: 'struts', width: 80,
                 formatter: function (value, options, row) {
@@ -43,10 +36,15 @@ $(function () {
             },
             {label: '新增时间', name: 'insTime', index: 'ins_time', width: 80},
             {label: '1.博主 2.其他', name: 'type', index: 'type', width: 80},
-            {label: '订阅状态:0未订阅，1已订阅', name: 'subscribe', index: 'subscribe', width: 80}
+            {label: '订阅状态', name: 'subscribe', index: 'subscribe', width: 80,
+                formatter: function (value, options, row) {
+                    return value === 0 ?
+                        '<span class="label label-info">未订阅</span>' :
+                        '<span class="label label-success">已订阅</span>';
+                }}
         ],
         viewrecords: true,
-        height: 385,
+        height: $(window).height()-150,
         rowNum: 10,
         rowList: [10, 30, 50],
         rownumbers: true,

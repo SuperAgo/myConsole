@@ -12,6 +12,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.myConsole.modules.oss.entity.SysOssEntity;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * 文件上传
  *
@@ -19,5 +21,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface SysOssDao extends BaseMapper<SysOssEntity> {
-	
+
+    List<SysOssEntity> findByIds(String ids);
 }

@@ -3,5 +3,7 @@
 
 <mapper namespace="com.myConsole.modules.oss.dao.SysOssDao">
 
-
+    <select id="findByIds" parameterType="java.lang.String" resultType="com.myConsole.modules.oss.entity.SysOssEntity">
+        select * from sys_oss where id in (#{ids})
+    </select>
 </mapper>

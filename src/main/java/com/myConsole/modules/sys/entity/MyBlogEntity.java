@@ -23,6 +23,7 @@ public class MyBlogEntity implements Serializable {
 	private List<MyArticleLabelEntity> sonLabelList;
 	private List<MyArticleLabelEntity> deleteSonLabelList;
 	private List<Integer> addSonLabelList;
+	private String contentHtml;
 	/**
 	 * Id
 	 */

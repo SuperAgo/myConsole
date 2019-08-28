@@ -2,23 +2,19 @@ package com.myConsole.modules.sys.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.myConsole.common.utils.PageUtils;
-import com.myConsole.modules.sys.entity.MyLeavingMessageEntity;
+import com.myConsole.modules.sys.entity.MyAboutEntity;
 
 import java.util.Map;
 
 /**
- * 用户留言表
+ * 关于
  *
  * @author Mark
  * @email sunlightcs@gmail.com
- * @date 2019-08-07 16:18:28
+ * @date 2019-08-23 17:14:55
  */
-public interface MyLeavingMessageService extends IService<MyLeavingMessageEntity> {
+public interface MyAboutService extends IService<MyAboutEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
-
-    Map getMyMessageBoard();
-
-    int changeMessageBoards(Map myMessageBoard);
 }
 

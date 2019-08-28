@@ -2,21 +2,14 @@
 <html>
 <head>
     <title>用户表</title>
-		<#include "/header.html">
+    <#include "/header.html">
 </head>
 <body>
 <div id="rrapp" v-cloak>
     <div v-show="showList">
         <div class="grid-btn">
-			<#if shiro.hasPermission("sys:myuser:save")>
             <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
-			</#if>
-			<#if shiro.hasPermission("sys:myuser:update")>
             <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
-			</#if>
-			<#if shiro.hasPermission("sys:myuser:delete")>
-            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
-			</#if>
         </div>
         <table id="jqGrid"></table>
         <div id="jqGridPager"></div>
@@ -25,175 +18,127 @@
     <div v-show="!showList" class="panel panel-default">
         <div class="panel-heading">{{title}}</div>
         <form class="form-horizontal">
-														                    <div class="form-group">
-                        <div class="col-sm-2 control-label">真实姓名</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.userName" placeholder="真实姓名"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">昵称</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.nickName" placeholder="昵称"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">手机号</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.telephone" placeholder="手机号"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">邮箱</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.email" placeholder="邮箱"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">密码</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.password" placeholder="密码"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">生日</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.birthday" placeholder="生日"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">网络头像</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.networkAvatar" placeholder="网络头像"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">1男
-            2女</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.sex" placeholder="1男
+            <div class="form-group">
+                <div class="col-sm-2 control-label">真实姓名</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="myUser.userName" placeholder="真实姓名"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">昵称</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="myUser.nickName" placeholder="昵称"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">手机号</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="myUser.telephone" placeholder="手机号"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">邮箱</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="myUser.email" placeholder="邮箱"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">密码</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="myUser.password" placeholder="密码"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">生日</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="myUser.birthday" placeholder="生日"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">网络头像</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="myUser.networkAvatar" placeholder="网络头像"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">1男
+                    2女
+                </div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="myUser.sex" placeholder="1男
             2女"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">个人签名</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.signature" placeholder="个人签名"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">简介</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.introduction" placeholder="简介"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">爱好</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.hobby" placeholder="爱好"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">地区</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.region" placeholder="地区"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">地区代码</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.regionCode" placeholder="地区代码"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">手机号</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.background" placeholder="手机号"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">小图1</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.picOne" placeholder="小图1"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">小图2</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.picTwo" placeholder="小图2"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">小图3</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.picThree" placeholder="小图3"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">小图4</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.picFour" placeholder="小图4"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">留言板背景图</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.messageBoardPictures" placeholder="留言板背景图"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">留言板寄语</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.messageBoards" placeholder="留言板寄语"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">状态
-            1使用中
-            0已删除</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.state" placeholder="状态
-            1使用中
-            0已删除"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">0未实名
-            1已实名</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.struts" placeholder="0未实名
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">个人签名</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="myUser.signature" placeholder="个人签名"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">简介</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="myUser.introduction" placeholder="简介"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">爱好</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="myUser.hobby" placeholder="爱好"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">地区</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="myUser.region" placeholder="地区"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">地区代码</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="myUser.regionCode" placeholder="地区代码"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">0未实名
+                    1已实名
+                </div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="myUser.struts" placeholder="0未实名
             1已实名"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">新增时间</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.insTime" placeholder="新增时间"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">盐</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.salt" placeholder="盐"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">1.博主
-            2.其他</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.type" placeholder="1.博主
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">新增时间</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="myUser.insTime" placeholder="新增时间"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">盐</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="myUser.salt" placeholder="盐"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">1.博主
+                    2.其他
+                </div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="myUser.type" placeholder="1.博主
             2.其他"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">订阅状态:0未订阅，1已订阅</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="myUser.subscribe" placeholder="订阅状态:0未订阅，1已订阅"/>
-                        </div>
-                    </div>
-							            <div class="form-group">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">订阅状态:0未订阅，1已订阅</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="myUser.subscribe" placeholder="订阅状态:0未订阅，1已订阅"/>
+                </div>
+            </div>
+            <div class="form-group">
                 <div class="col-sm-2 control-label"></div>
-                <input type="button" class="btn btn-primary" id="btnSaveOrUpdate" data-loading-text="保存中..." @click="saveOrUpdate" value="确定"/>
+                <input type="button" class="btn btn-primary" id="btnSaveOrUpdate" data-loading-text="保存中..."
+                       @click="saveOrUpdate" value="确定"/>
                 &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
             </div>
         </form>

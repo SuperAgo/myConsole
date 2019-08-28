@@ -17,11 +17,15 @@ import com.myConsole.modules.oss.entity.SysOssEntity;
 import com.myConsole.modules.oss.service.SysOssService;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import java.util.List;
 import java.util.Map;
 
 
 @Service("sysOssService")
 public class SysOssServiceImpl extends ServiceImpl<SysOssDao, SysOssEntity> implements SysOssService {
+	@Resource
+	private SysOssDao sysOssDao;
 
 	@Override
 	public PageUtils queryPage(Map<String, Object> params) {
@@ -31,5 +35,5 @@ public class SysOssServiceImpl extends ServiceImpl<SysOssDao, SysOssEntity> impl
 
 		return new PageUtils(page);
 	}
-	
+
 }

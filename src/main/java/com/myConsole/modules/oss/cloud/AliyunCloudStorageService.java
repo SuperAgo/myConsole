@@ -9,10 +9,15 @@
 package com.myConsole.modules.oss.cloud;
 
 import com.aliyun.oss.OSSClient;
+import com.aliyun.oss.model.DeleteObjectsRequest;
+import com.aliyun.oss.model.DeleteObjectsResult;
 import com.myConsole.common.exception.RRException;
+import com.myConsole.modules.oss.entity.SysOssEntity;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 阿里云存储
@@ -58,5 +63,23 @@ public class AliyunCloudStorageService extends CloudStorageService {
     @Override
     public String uploadSuffix(InputStream inputStream, String suffix) {
         return upload(inputStream, getPath(config.getAliyunPrefix(), suffix));
+    }
+
+    @Override
+    public Boolean deleFile(List<SysOssEntity> ossEntityList) {
+        try {
+            List<String> keyList = new ArrayList<>();
+            for(SysOssEntity ossEntity : ossEntityList){
+                keyList.add(ossEntity.getUrl().replace(config.getAliyunDomain()+"/",""));
+            }
+            DeleteObjectsResult deleteObjectsResult = client.deleteObjects(new DeleteObjectsRequest(config.getAliyunBucketName()).withKeys(keyList));
+            List<String> deletedObjects = deleteObjectsResult.getDeletedObjects();
+            // 关闭OSSClient。
+            client.shutdown();
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
     }
 }

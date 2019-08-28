@@ -1,14 +1,17 @@
 package com.myConsole.modules.sys.service.impl;
 
+import cn.hutool.extra.mail.MailUtil;
 import com.myConsole.modules.sys.dao.MyArticleLabelDao;
+import com.myConsole.modules.sys.dao.MyLabelDao;
+import com.myConsole.modules.sys.dao.MyUserDao;
+import com.myConsole.modules.sys.entity.LabelGradeEnum;
 import com.myConsole.modules.sys.entity.MyArticleLabelEntity;
 import org.springframework.stereotype.Service;
 
+import java.io.Console;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -30,6 +33,10 @@ public class MyBlogServiceImpl extends ServiceImpl<MyBlogDao, MyBlogEntity> impl
     private MyBlogDao myBlogDao;
     @Resource
     private MyArticleLabelDao myArticleLabelDao;
+    @Resource
+    private MyLabelDao myLabelDao;
+    @Resource
+    private MyUserDao myUserDao;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -90,19 +97,24 @@ public class MyBlogServiceImpl extends ServiceImpl<MyBlogDao, MyBlogEntity> impl
 
     @Override
     public int insertSelective(MyBlogEntity myBlog) {
+        int i = 0;
         try {
             myBlog.setContent(URLDecoder.decode(myBlog.getContent(), "utf-8"));
-            if (1 == myBlog.getIsTop()) {
+            myBlog.setContentHtml(URLDecoder.decode(myBlog.getContentHtml(), "utf-8"));
+            if (null != myBlog.getIsTop() && 1 == myBlog.getIsTop()) {
                 myBlog.setToppingTime(new Date());
             }
-            if (1 == myBlog.getIsSelected()) {
+            if (null != myBlog.getIsSelected() && 1 == myBlog.getIsSelected()) {
                 myBlog.setSelectedTime(new Date());
             }
             myBlog.setAuthor(1);
+            return myBlogDao.insertSelective(myBlog);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
+        } finally {
+            sendEmail(myBlog);
         }
-        return myBlogDao.insertSelective(myBlog);
+        return i;
     }
 
     @Override
@@ -130,5 +142,14 @@ public class MyBlogServiceImpl extends ServiceImpl<MyBlogDao, MyBlogEntity> impl
             return 0;
         }
         return 1;
+    }
+
+    private void sendEmail(MyBlogEntity myBlog) {
+        ArrayList<String> tos = myUserDao.queryAllSubscribedMailboxes();
+        StringBuilder contentHtml=new StringBuilder();
+        contentHtml.append("<div><img src="+myBlog.getBanner()+" style='max-width: 100%;height: auto;'></div>");
+        contentHtml.append(myBlog.getContentHtml());
+        contentHtml.append("<a href='http://www.super100wj.top:8080/free/blog'>更多</a>");
+        MailUtil.send(tos, myBlog.getTitle(),contentHtml.toString() , true);
     }
 }

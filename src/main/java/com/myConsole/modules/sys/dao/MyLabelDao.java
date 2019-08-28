@@ -20,4 +20,12 @@ public interface MyLabelDao extends BaseMapper<MyLabelEntity> {
     List<Map> getSonLabelList();
 
     List<MyLabelEntity> getAlllabel();
+
+    Map getBlogTabByBlogId(Integer blogId);
+
+    Map getTabByBlogId(Integer blogId);
+
+    Map getTabBySonId(Integer tabId);
+
+    List<Map> selectArticleSonLabels(Integer blogId);
 }

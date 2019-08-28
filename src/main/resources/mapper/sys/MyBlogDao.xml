@@ -53,7 +53,7 @@
             mb.id=#{id}
     </select>
 
-    <insert id="insertSelective" parameterType="com.myConsole.modules.sys.entity.MyBlogEntity">
+    <insert id="insertSelective" parameterType="com.myConsole.modules.sys.entity.MyBlogEntity" keyProperty="id" useGeneratedKeys="true">
         insert into my_blog
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">

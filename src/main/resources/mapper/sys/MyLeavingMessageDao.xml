@@ -3,7 +3,7 @@
 
 <mapper namespace="com.myConsole.modules.sys.dao.MyLeavingMessageDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.myConsole.modules.sys.entity.MyLeavingMessageEntity" id="myLeavingMessageMap">
         <result property="id" column="id"/>
         <result property="parentId" column="parent_id"/>
@@ -16,5 +16,23 @@
         <result property="compliments" column="compliments"/>
     </resultMap>
 
+    <select id="getMyMessageBoard" resultType="java.util.HashMap">
+        select
+            message_board_pictures as messageBoardPictures,
+            message_boards as messageBoards
+        from
+            my_message_board
+        where
+            id = 1
+    </select>
 
+    <update id="changeMessageBoards" parameterType="java.util.HashMap">
+        update
+            my_message_board
+        set
+            message_board_pictures = #{messageBoardPictures},
+            message_boards = #{messageBoards}
+        where
+            id = 1
+    </update>
 </mapper>

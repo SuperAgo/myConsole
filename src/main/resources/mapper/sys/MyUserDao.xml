@@ -19,13 +19,6 @@
         <result property="hobby" column="hobby"/>
         <result property="region" column="region"/>
         <result property="regionCode" column="region_code"/>
-        <result property="background" column="background"/>
-        <result property="picOne" column="pic_one"/>
-        <result property="picTwo" column="pic_two"/>
-        <result property="picThree" column="pic_three"/>
-        <result property="picFour" column="pic_four"/>
-        <result property="messageBoardPictures" column="message_board_pictures"/>
-        <result property="messageBoards" column="message_boards"/>
         <result property="state" column="State"/>
         <result property="struts" column="struts"/>
         <result property="insTime" column="ins_time"/>
@@ -34,5 +27,7 @@
         <result property="subscribe" column="subscribe"/>
     </resultMap>
 
-
+    <select id="queryAllSubscribedMailboxes" resultType="java.lang.String">
+        select email from my_user where subscribe = 1
+    </select>
 </mapper>

@@ -8,6 +8,7 @@
 
 package com.myConsole.modules.oss.cloud;
 
+import com.myConsole.modules.oss.entity.SysOssEntity;
 import com.qiniu.common.Zone;
 import com.qiniu.http.Response;
 import com.qiniu.storage.Configuration;
@@ -18,6 +19,7 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * 七牛云存储
@@ -73,5 +75,10 @@ public class QiniuCloudStorageService extends CloudStorageService {
     @Override
     public String uploadSuffix(InputStream inputStream, String suffix) {
         return upload(inputStream, getPath(config.getQiniuPrefix(), suffix));
+    }
+
+    @Override
+    public Boolean deleFile(List<SysOssEntity> ossEntityList) {
+        return null;
     }
 }
