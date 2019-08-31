@@ -108,6 +108,7 @@ public class MyBlogServiceImpl extends ServiceImpl<MyBlogDao, MyBlogEntity> impl
                 myBlog.setSelectedTime(new Date());
             }
             myBlog.setAuthor(1);
+            myBlog.setInsTime(new Date());
             return myBlogDao.insertSelective(myBlog);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();

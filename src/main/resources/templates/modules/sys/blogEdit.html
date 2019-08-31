@@ -14,8 +14,8 @@
         <textarea style="display:none;" id="makerdownText"></textarea>
     </div>
     <div style="display: none" id="detail">
-        <div>
-            <form class="layui-form layui-form-pane" lay-filter="myBlog">
+        <div class="layui-row">
+            <form class="layui-form layui-form-pane layui-col-xs12 layui-col-sm12 layui-col-md12" lay-filter="myBlog">
                 <div class="layui-form-item" pane style="line-height: 160px;">
                     <label class="layui-form-label" style="line-height: 150px;">banner图</label>
                     <div class="layui-input-block" style="line-height: 160px;">
@@ -148,10 +148,12 @@
                 },
                 nextStep: function (cm, icon, cursor, selection) {
                     if (testEditor.getMarkdown()) {
+                        var weight = ($("html").width() * 0.9) + "px";
+                        var height = ($("html").height() * 0.9) + "px";
                         layer.open({
                             title: "保存",
                             type: 1,
-                            area: ['800px', '500px'], //宽高
+                            area: [weight, height], //宽高
                             content: $("#detail"),
                             btn: ['确定', '重置',]
                             , success: function () {

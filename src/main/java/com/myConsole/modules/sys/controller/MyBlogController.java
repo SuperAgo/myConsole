@@ -84,9 +84,9 @@ public class MyBlogController {
     public R save(@RequestBody MyBlogEntity myBlog) {
         int i = myBlogService.insertSelective(myBlog);
         if (i < 1) {
-            return R.error();
+            return R.error("保存失败！");
         }
-        return R.ok();
+        return R.ok("保存成功！");
     }
 
     /**
