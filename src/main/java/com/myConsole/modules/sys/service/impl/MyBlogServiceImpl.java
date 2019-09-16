@@ -150,7 +150,7 @@ public class MyBlogServiceImpl extends ServiceImpl<MyBlogDao, MyBlogEntity> impl
         StringBuilder contentHtml=new StringBuilder();
         contentHtml.append("<div><img src="+myBlog.getBanner()+" style='max-width: 100%;height: auto;'></div>");
         contentHtml.append(myBlog.getContentHtml());
-        contentHtml.append("<a href='http://www.super100wj.top:8080/free/blog'>更多</a>");
+        contentHtml.append("<a href='http://web.super100wj.top'>更多</a>");
         MailUtil.send(tos, myBlog.getTitle(),contentHtml.toString() , true);
     }
 }
